@@ -4,7 +4,7 @@ import org.bukkit.ChatColor;
 
 
 public class Logger {
-	private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Plugin.getInstance().getName());
+	private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ChunkSpawnerLimiter.getInstance().getName());
 
 	public static void info(String mess) {
 		logger.info(getLogPrefix() + mess);
@@ -70,7 +70,7 @@ public class Logger {
 	}
 
 	public static final String getLogPrefix() {
-		return String.format(Plugin.chatPrefix);
+		return String.format(ChunkSpawnerLimiter.chatPrefix);
 	}
 	
 	// replace color codes with the colors

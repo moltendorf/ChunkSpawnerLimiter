@@ -68,7 +68,7 @@ public class ChatUtils {
 	}
 
 	public static final String getChatPrefix() {
-		return replaceColorCodes(Plugin.chatPrefix);
+		return replaceColorCodes(ChunkSpawnerLimiter.chatPrefix);
 	}
 
 	// replace color codes with the colors

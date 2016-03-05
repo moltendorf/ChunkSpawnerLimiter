@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 
-import org.bukkit.ChatColor;
+import com.cyprias.ChunkSpawnerLimiter.ChunkSpawnerLimiter;
 import org.bukkit.Chunk;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -18,7 +18,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 import com.cyprias.ChunkSpawnerLimiter.ChatUtils;
 import com.cyprias.ChunkSpawnerLimiter.Config;
 import com.cyprias.ChunkSpawnerLimiter.Logger;
-import com.cyprias.ChunkSpawnerLimiter.Plugin;
 import com.cyprias.ChunkSpawnerLimiter.compare.MobGroupCompare;
 
 public class WorldListener implements Listener {
@@ -34,7 +33,7 @@ public class WorldListener implements Listener {
 		public void run() {
 			Logger.debug("Active check " + c.getX() + " " + c.getZ());
 			if (!c.isLoaded()){
-				Plugin.cancelTask(taskID);
+				ChunkSpawnerLimiter.cancelTask(taskID);
 				return;
 			}
 			
@@ -54,7 +53,7 @@ public class WorldListener implements Listener {
 		Logger.debug("ChunkLoadEvent " + e.getChunk().getX() + " " + e.getChunk().getZ());
 		if (Config.getBoolean("properties.active-inspections")){
 			inspectTask task = new inspectTask(e.getChunk());
-			int taskID = Plugin.scheduleSyncRepeatingTask(task, Config.getInt("properties.inspection-frequency") * 20L);
+			int taskID = ChunkSpawnerLimiter.scheduleSyncRepeatingTask(task, Config.getInt("properties.inspection-frequency") * 20L);
 			task.setId(taskID);
 
 			chunkTasks.put(e.getChunk(), taskID);
@@ -69,7 +68,7 @@ public class WorldListener implements Listener {
 		Logger.debug("ChunkUnloadEvent " + e.getChunk().getX() + " " + e.getChunk().getZ());
 		
 		if (chunkTasks.containsKey(e.getChunk())){
-			Plugin.getInstance().getServer().getScheduler().cancelTask(chunkTasks.get(e.getChunk()));
+			ChunkSpawnerLimiter.getInstance().getServer().getScheduler().cancelTask(chunkTasks.get(e.getChunk()));
 			chunkTasks.remove(e.getChunk());
 		}
 

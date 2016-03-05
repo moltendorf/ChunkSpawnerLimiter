@@ -1,20 +1,19 @@
 package com.cyprias.ChunkSpawnerLimiter;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.HashMap;
-
+import com.cyprias.ChunkSpawnerLimiter.listeners.EntityListener;
+import com.cyprias.ChunkSpawnerLimiter.listeners.WorldListener;
 import org.bukkit.Location;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.mcstats.Metrics;
 
-import com.cyprias.ChunkSpawnerLimiter.listeners.EntityListener;
-import com.cyprias.ChunkSpawnerLimiter.listeners.WorldListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.HashMap;
 
-public class Plugin extends JavaPlugin {
-	private static Plugin instance = null;
+public class ChunkSpawnerLimiter extends JavaPlugin {
+	private static ChunkSpawnerLimiter instance = null;
 	public static String chatPrefix = "&4[&bCSL&4]&r ";
 
 	public static HashMap<String, Location> deaths = new HashMap<String, Location>();
@@ -66,7 +65,7 @@ public class Plugin extends JavaPlugin {
 		getServer().getScheduler().cancelTasks(this);
 	}
 	
-	public static final Plugin getInstance() {
+	public static final ChunkSpawnerLimiter getInstance() {
 		return instance;
 	}
 
