@@ -1,0 +1,7 @@
+name: ${name}
+main: ${groupId}.${artifactId}.${artifactId}
+version: ${version}-${maven.build.timestamp}
+description: ${description}
+author: Cyprias
+authors:
+- moltendorf
